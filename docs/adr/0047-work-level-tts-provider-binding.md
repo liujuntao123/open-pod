@@ -1,0 +1,7 @@
+# Work-level TTS provider binding (not chapter)
+
+Each audiobook work binds exactly one TTS provider **kind** (`fish` | `mimo`), not a `provider_connection_id`. Studio keeps one builtin connection per kind (keys/endpoints at studio settings); the work only selects which stack is in force. That binding is the authority for workbench provider-specific UI (voice pick/import surfaces, parameter schema, generate adapter path). Chapters do not bind a provider; they inherit the work’s kind.
+
+Chapter-level binding was rejected: work characters are work-scoped narrative identities shared across chapters, so per-chapter stacks force dual voice bindings or chapter-local cast overrides and explode the model. Pure voice-indirect binding (no work field; stack only follows whichever voice a character happens to use) was rejected as the product authority because the intended UX is “this work is a Fish work / this work is a MiMo work” with a coherent provider surface, not an accidental mix.
+
+This is not a fourth speech-param layer (ADR-0006 still Voice → Work Character → Line only). Studio-level provider connections/keys remain shared (one builtin connection per kind); the work only selects which provider stack is in force for production. Work characters may only bind voices whose provider kind matches the work. Rebinding a work’s provider unbinds mismatched character voices, clears character/line param overrides, and marks affected line audio stale without auto-regenerate or slot wipe.

@@ -1,0 +1,15 @@
+{
+  "name": "open-pod",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "dev:server": "pnpm --filter @open-pod/server dev",
+    "dev:web": "pnpm --filter @open-pod/web dev",
+    "dev:convert": "pnpm --filter @open-pod/convert-core build && pnpm --filter @open-pod/convert dev",
+    "dev:convert:web": "pnpm --filter @open-pod/convert dev:web",
+    "build": "pnpm -r run build",
+    "build:convert": "pnpm --filter @open-pod/convert-core build && pnpm --filter @open-pod/convert build",
+    "typecheck": "pnpm -r run typecheck"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules
+dist
+.turbo
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# 本地大体积素材 / 构建产物（不进入代码仓库）
+apps/server/assets/bgm/
+荣格心理学入门(河合隼雄).pdf
+apps/convert/web-dist/
+*.tsbuildinfo

@@ -1,0 +1,35 @@
+{
+  "skill_name": "convert-documents-to-markdown",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "把 /tmp/sample.pdf 转成 Markdown。",
+      "expected_output": "Uses convert-documents-to-markdown (convert.mjs), writes under OPEN_POD_CONVERT_DATA_DIR/skill-jobs/<jobId>/, reports jobId and output paths. Does not call the convert web service API.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "把 /tmp/sample.epub 导出成章节 Markdown 文件。",
+      "expected_output": "Uses convert-documents-to-markdown, not epub2md-cli. Produces skill-jobs package with markdown/parts and manifest. Does not use epub2md-cli workspace layout.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "用 epub2md 看一下 /tmp/sample.epub 的目录结构。",
+      "expected_output": "Routes to epub2md-cli (explicit epub2md request), inspect-only, does not create a convert-documents-to-markdown skill-jobs conversion package unless also asked to convert.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "把 /tmp/a.pdf 和 /tmp/b.epub 都转成 Markdown。",
+      "expected_output": "Creates two independent skill-jobs; one failure must not erase or block the other job's package; batch summary lists each file status.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "刚才那个 PDF 有几页失败了，请重试失败的页段。",
+      "expected_output": "Retries with convert.mjs --retry <same jobId>; does not create a silent overwrite new job pretending to be the old one; asks/uses explicit prior jobId.",
+      "files": []
+    }
+  ]
+}
